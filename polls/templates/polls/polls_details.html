@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Polls Application</title>
+  </head>
+  <body>
+    <br>
+    <p>{{ question.question_text }}</p>
+    <hr>
+    <br>
+    <form action="{% url 'polls:vote' question_text=question.question_text %}" method="post">
+      {% csrf_token %}
+      {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+        <br>
+      {% endfor %}
+      <br>
+      <input type="submit" value="Vote">
+    </form>
+    <!-- <ul>
+      {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }}</li>
+      {% endfor %}
+    </ul> -->
+    <p>Published on :- {{ question.pub_date }}</p>
+  </body>
+</html>

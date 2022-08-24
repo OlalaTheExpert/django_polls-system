@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Polls Application</title>
+  </head>
+  <body>
+    <br>
+    <h3>List of Questions</h3>
+    <hr>
+    {% for question in questions %}
+      <p><a href="{% url 'polls:details' question_text=question.question_text %}">{{ question.question_text }}</a></p>
+      <!-- <p>Published on :- {{ question.pub_date }}</p> -->
+      <hr>
+      <br>
+    {% endfor %}
+  </body>
+</html>
